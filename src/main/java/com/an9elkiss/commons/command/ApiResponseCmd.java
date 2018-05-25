@@ -27,6 +27,13 @@ public class ApiResponseCmd<T> implements Serializable{
 		return apiResponseCmd;
 	}
 
+	public static ApiResponseCmd deny() {
+		ApiResponseCmd apiResponseCmd = new ApiResponseCmd();
+		apiResponseCmd.setCode(Status.ACCESS_DENY_CODE);
+		apiResponseCmd.setMessage(Status.ACCESS_DENY_MESSAGE);
+		return apiResponseCmd;
+	}
+
 	public static <D> ApiResponseCmd<D> success(D t) {
 		ApiResponseCmd<D> apiResponseCmd = new ApiResponseCmd<D>();
 		apiResponseCmd.setCode(Status.SUCCESS_CODE);

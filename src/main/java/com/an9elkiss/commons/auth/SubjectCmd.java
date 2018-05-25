@@ -1,6 +1,6 @@
-package com.an9elkiss.commons.command;
+package com.an9elkiss.commons.auth;
 
-public class Principal {
+public class SubjectCmd {
 
 	private String name;
 
