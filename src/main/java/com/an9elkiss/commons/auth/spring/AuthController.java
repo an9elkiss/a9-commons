@@ -10,7 +10,8 @@ import com.an9elkiss.commons.command.ApiResponseCmd;
 @Controller
 public class AuthController {
 
-	@RequestMapping(value = "/access-deny", produces = { "application/json" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/access-deny", produces = { "application/json" }, 
+			method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 	public ResponseEntity<ApiResponseCmd> getWeekDays() {
 
 		return ResponseEntity.ok(ApiResponseCmd.deny());
