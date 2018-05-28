@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.an9elkiss.commons.auth.AppContext;
 import com.an9elkiss.commons.auth.JsonFormater;
 import com.an9elkiss.commons.auth.model.Principal;
 import com.an9elkiss.commons.auth.model.Rights;
@@ -26,6 +27,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+
+		AppContext.cleanPrincipal();
 
 		if (!(handler instanceof HandlerMethod)) {
 			return true;
@@ -64,6 +67,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			return accessDeny(request, response);
 		}
 		Principal principal = JsonFormater.format(json);
+		AppContext.setPrincipal(principal);
 		for (Rights r : principal.getRights()) {
 			if (r.getCode().equals(access.value())) {
 				return true;
