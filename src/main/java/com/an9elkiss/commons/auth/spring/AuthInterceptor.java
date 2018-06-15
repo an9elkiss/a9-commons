@@ -34,24 +34,24 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 
-		// ½«handlerÇ¿×ªÎªHandlerMethod, Ç°ÃæÒÑ¾­Ö¤ÊµÕâ¸öhandler¾ÍÊÇHandlerMethod
+		// å°†handlerå¼ºè½¬ä¸ºHandlerMethod, å‰é¢å·²ç»è¯å®è¿™ä¸ªhandlerå°±æ˜¯HandlerMethod
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		// ´Ó·½·¨´¦ÀíÆ÷ÖĞ»ñÈ¡³öÒªµ÷ÓÃµÄ·½·¨
+		// ä»æ–¹æ³•å¤„ç†å™¨ä¸­è·å–å‡ºè¦è°ƒç”¨çš„æ–¹æ³•
 		Method method = handlerMethod.getMethod();
-		// »ñÈ¡³ö·½·¨ÉÏµÄAccess×¢½â
+		// è·å–å‡ºæ–¹æ³•ä¸Šçš„Accessæ³¨è§£
 		Access access = method.getAnnotation(Access.class);
 		if (access == null) {
-			// Èç¹û×¢½âÎªnull, ËµÃ÷²»ĞèÒªÀ¹½Ø, Ö±½Ó·Å¹ı
+			// å¦‚æœæ³¨è§£ä¸ºnull, è¯´æ˜ä¸éœ€è¦æ‹¦æˆª, ç›´æ¥æ”¾è¿‡
 			return true;
 		}
 
 		// Set<String> authSet = new HashSet<String>();
 		// if (access.authorities().length > 0) {
-		// // Èç¹ûÈ¨ÏŞÅäÖÃ²»Îª¿Õ, ÔòÈ¡³öÅäÖÃÖµ
+		// // å¦‚æœæƒé™é…ç½®ä¸ä¸ºç©º, åˆ™å–å‡ºé…ç½®å€¼
 		// String[] authorities = access.authorities();
 		//
 		// for (String authority : authorities) {
-		// // ½«È¨ÏŞ¼ÓÈëÒ»¸öset¼¯ºÏÖĞ
+		// // å°†æƒé™åŠ å…¥ä¸€ä¸ªseté›†åˆä¸­
 		// authSet.add(authority);
 		// }
 		// }
@@ -74,7 +74,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			}
 		}
 
-		// À¹½ØÖ®ºóÓ¦¸Ã·µ»Ø¹«¹²½á¹û, ÕâÀïÃ»×ö´¦Àí
+		// æ‹¦æˆªä¹‹ååº”è¯¥è¿”å›å…¬å…±ç»“æœ, è¿™é‡Œæ²¡åšå¤„ç†
 		return accessDeny(request, response);
 	}
 
