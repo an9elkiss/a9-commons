@@ -35,5 +35,8 @@ public class Principal {
 		return subject.getName();
 	}
 
+	public Integer getId() {
+		return subject.getId();
+	}
 
 }
