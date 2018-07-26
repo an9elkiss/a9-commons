@@ -2,6 +2,7 @@ package com.an9elkiss.commons.auth.spring;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -66,6 +67,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if (StringUtils.isBlank(json)) {
 			return accessDeny(request, response);
 		}
+		//redis刷新
+		redisUtils.setString(RedisKeyPrefix.SESSION + token, json, 60l, TimeUnit.MINUTES);
 		Principal principal = JsonFormater.format(json);
 		AppContext.setPrincipal(principal);
 		for (Rights r : principal.getRights()) {
